@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Pattaya' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body ng-app='myApp'>
+ <h1 class='title'>Contact List</h1>
+
+ 	<div class='main' ng-controller='myCtrl'>
+ 		<div class='top'>
+ 			<span class='label'>Name:</span>
+ 			<input type="text" ng-model='name'>
+ 			<span class='label'>Number:</span><input type="text" ng-model='number'>
+ 			<button class='btn btn-default submit' ng-click='addContact()'>Submit</button>
+ 		</div>
+ 		<div class='contact' ng-repeat='contact in contacts | orderBy : "name"'>
+ 			<p ng-class='{"saved" : saved}' >Name: <span ng-click='editing = !editing; saved = false' ng-hide='editing'>{{contact.name}}</span>  <input ng-blur='editing = false' ng-show='editing' type="text" name="contactName" value='{{contact.name}}'>
+ 			</p>
+ 			
+ 			<p ng-class='{"saved" : saved}'>Number: <span ng-click='editing = !editing; saved = false' ng-hide='editing'>{{contact.number}}</span> <input ng-blur='editing = false' ng-show='editing' type="text" name="contactName" value='{{contact.number}}'>
+ 			</p> 
+ 			
+ 			<button class='btn btn btn-success'name='save' ng-click='saveContact(); saved = true'>Save</button>
+ 			<button class='btn btn btn-danger' name='delete'>Delete</button>	
+ 		</div>
+ 	</div>
+
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+ 	<script type="text/javascript" src='scripts/script.js'></script>
+ 	<script type="text/javascript" src='scripts/controllers/main.js'></script>
+</body>
+</html>
