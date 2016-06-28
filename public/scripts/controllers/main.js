@@ -2,19 +2,34 @@
 
 var app = angular.module('myApp');
 
-app.controller('myCtrl', function($scope){
-	$scope.contacts = [
-		{name:'Sang',   number: '111-111-1111'},
-		{name:'Bob',    number: '222-222-2222'},
-		{name:'Jessie', number: '333-333-3333'},
-		{name:'Angie',  number: '444-444-4444'}
-	];
+app.controller('mainCtrl', function($scope, nameOfService){
 
-	$scope.saveContact = function(){
-		console.log('saved!');
+	nameOfService.getContacts(function(response){
+			//console.log(response.data);
+			$scope.contacts =  response.data;
+	});
+
+	$scope.saveContact = function(contact){
+		// var editedContacts = $scope.contacts.filter(function(contact){
+		// 	if(contact.edited){
+		// 		return contact;
+		// 	}
+		// });
+		nameOfService.saveContact(contact);
 	}
 
 	$scope.addContact = function(){
 		$scope.contacts.push({name:$scope.name, number:$scope.number});
+		$scope.name = null;
+		$scope.number = null;
 	}
+
+
+	//remember using ng-repeat provides the $index
+	//using $index causes bugs when used with filters 
+	$scope.deleteContact = function(contact){
+		nameOfService.deleteContact(contact);
+		$scope.contacts.splice($scope.contacts.indexOf(contact),1);
+	};
+
 })

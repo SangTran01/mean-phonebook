@@ -1,0 +1,19 @@
+ 	<div class='main'>
+ 		<button ng-click='hello()'>A BUTTON</button>
+ 		<div class='top'>
+ 			<span class='label'>Name:</span>
+ 			<input type="text" ng-model='name'>
+ 			<span class='label'>Number:</span><input type="text" ng-model='number'>
+ 			<button class='btn btn-default submit' ng-click='addContact()'>Submit</button>
+ 		</div>
+ 		<div class='contact' ng-repeat='contact in contacts | orderBy : "name"'>
+ 			<p ng-class='{"saved" : saved, "edited" : contact.edited}' >Name: <span ng-click='editing = !editing; saved = false' ng-hide='editing'>{{contact.name}}</span>  <input ng-change='contact.edited = true' ng-model='contact.name' ng-blur='editing = false' ng-show='editing' type="text" name="contactName" value='{{contact.name}}'>
+ 			</p>
+ 			
+ 			<p ng-class='{"saved" : saved, "edited" : contact.edited}'>Number: <span ng-click='editing = !editing; saved = false' ng-hide='editing'>{{contact.number}}</span> <input ng-change='contact.edited = true' ng-model='contact.number' ng-blur='editing = false' ng-show='editing' type="text" name="contactName" value='{{contact.number}}'>
+ 			</p> 
+ 			
+ 			<button class='btn btn btn-success'name='save' ng-click='saveContact(contact); saved = true'>Save</button>
+ 			<button class='btn btn btn-danger' name='delete' ng-click='deleteContact(contact)'>Delete</button>	
+ 		</div>
+ 	</div>

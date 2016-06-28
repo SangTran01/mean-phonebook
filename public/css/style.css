@@ -30,6 +30,10 @@ body {
 	color:#6ada8e;
 }
 
+.main p.edited {
+	color: #3b90af;
+}
+
 .top {
 	border-bottom: 3px solid #22375a;
 	padding: 10px 0;
